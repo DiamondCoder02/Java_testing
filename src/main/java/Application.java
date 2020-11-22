@@ -5,5 +5,8 @@ public class Application {
 
         System.out.println(auto1.color);
         System.out.println(auto2.color);
+
+        auto1.elindulni();
+        System.out.println("Autó sebessége: " + auto1.sebesseg);
     }
 }
