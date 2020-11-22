@@ -4,25 +4,24 @@ import java.util.Scanner;
 public class Application {
 
     public static void main(String[]args) {
-        System.out.println("1. Feladat");
+        System.out.println("Test1");
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Kérjük Írja be a mondatot!");
-        String mondat = scanner.nextLine();
+        System.out.println("First sentence");
+        String sentence = scanner.nextLine();
 
-        String szoveg = mondat;
-        String[] darabok = szoveg.split(" ");
+        String word = sentence;
+        String[] part = word.split(" ");
 
-        String lw = "";
-        for (int i = 0 ; i < darabok.length; i++ ){
-            // System.out.println(darabok[i]);
-            int mennyiseg = darabok[i].length();
-            int lfw = lw.length();
+        String long1 = "";
+        for (int i = 0 ; i < part.length; i++ ){
+            int mennyiseg = part[i].length();
+            int lfw = long1.length();
             if (mennyiseg >= lfw) {
-                lw = darabok[i];
+                long1 = part[i];
             }
         }
-        System.out.println(lw);
+        System.out.println(long1);
 
     }
 }
