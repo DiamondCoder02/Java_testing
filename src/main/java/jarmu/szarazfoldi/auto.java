@@ -1,7 +1,7 @@
 package jarmu.szarazfoldi;
 
 public class auto extends szarazfoldijarmu{
-    public auto(String color){
+    public auto(szinek color){
         this.color = color;
         this.kerekekszama = 4;
     }

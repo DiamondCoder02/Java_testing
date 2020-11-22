@@ -1,7 +1,7 @@
 package jarmu.szarazfoldi;
 
 public class motor extends szarazfoldijarmu{
-    public motor(String color){
+    public motor(szinek color){
         this.color = color;
         this.kerekekszama = 2;
     }
