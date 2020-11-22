@@ -6,10 +6,6 @@ public class motor extends szarazfoldijarmu{
         this.kerekekszama = 2;
     }
 
-    public motor() {
-
-    }
-
     public void elindulni(){
         sebesseg = 70;
     }

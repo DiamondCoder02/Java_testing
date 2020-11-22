@@ -6,7 +6,7 @@ import jarmu.szarazfoldi.szinek;
 public class Application {
     public static void main(String[] args) {
         szarazfoldijarmu auto1 = new auto(szinek.kek);
-        szarazfoldijarmu motor = new motor();
+        szarazfoldijarmu motor = new motor(szinek.sarga);
 
         System.out.println(auto1.color);
         System.out.println(motor.color);
