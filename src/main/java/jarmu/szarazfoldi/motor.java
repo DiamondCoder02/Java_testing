@@ -1,5 +1,7 @@
 package jarmu.szarazfoldi;
 
+import jarmu.szinek;
+
 public class motor extends szarazfoldijarmu{
     public motor(szinek color){
         this.color = color;

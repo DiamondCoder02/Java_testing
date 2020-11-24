@@ -1,4 +1,4 @@
-package jarmu.szarazfoldi;
+package jarmu.vizi;
 
 public enum szinek {
     zold("zöld"),

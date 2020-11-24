@@ -1,7 +1,8 @@
 package jarmu;
 
 public interface jarmu {
-    void elindulni();
+
+    void elindul();
 
     void megall();
 }
