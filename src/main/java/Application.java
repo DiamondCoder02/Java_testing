@@ -15,6 +15,7 @@ import proxy.AutoMosoProxy;
 import strategy.Concatenator;
 import strategy.Joiner;
 import strategy.Osszefuzo;
+import template_method.TemplateSubs;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -64,5 +65,7 @@ public class Application {
         List<String> darabok = Arrays.asList("ElsőSzó", "MásodikSzó");
         System.out.println(osszefuzo.osszefuz(darabok, new Concatenator()));
         System.out.println(osszefuzo.osszefuz(darabok, new Joiner()));
+        //Template Method
+        new TemplateSubs().businessLogika();
     }
 }
