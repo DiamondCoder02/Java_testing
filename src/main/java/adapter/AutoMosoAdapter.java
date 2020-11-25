@@ -7,7 +7,7 @@ public class AutoMosoAdapter {
         this.autoMoso = autoMoso;
     }
 
-    public static void mos(Kocsi kocsi){
+    public void mos(Kocsi kocsi){
         Auto auto = new Auto(kocsi.getMarka());
         autoMoso.mos(auto);
     }
