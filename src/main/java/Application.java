@@ -1,3 +1,7 @@
+import adapter.Auto;
+import adapter.AutoMoso;
+import adapter.AutoMosoAdapter;
+import adapter.Kocsi;
 import builder.Dobokocka;
 import builder.KockaBuilder;
 
@@ -11,6 +15,9 @@ public class Application {
                 .otodikOldal(32)
                 .hatodikOldal(64)
                 .build();
-        System.out.println(kocka);
+
+        Kocsi kocsi = new Kocsi("Fejrearri");
+        AutoMosoAdapter autoMosoAdapter = new AutoMosoAdapter(new AutoMoso());
+        AutoMosoAdapter.mos(kocsi);
     }
 }
