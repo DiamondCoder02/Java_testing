@@ -4,9 +4,14 @@ import adapter.AutoMosoAdapter;
 import adapter.Kocsi;
 import builder.Dobokocka;
 import builder.KockaBuilder;
+import chain_of_responsibilities.ElsoLepes;
+import chain_of_responsibilities.Lepes;
+import chain_of_responsibilities.MasodikLepes;
 import decorator.AutoMosoSzarito;
 import facade.AutoMosoFacade;
 import proxy.AutoMosoProxy;
+import java.util.Arrays;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -38,6 +43,9 @@ public class Application {
         }
 
         //Chain of responisbility
-
+        List<Lepes> lepesek = Arrays.asList(new ElsoLepes(), new MasodikLepes());
+        for (Lepes lepes : lepesek) {
+            lepes.lep();
+        }
     }
 }
