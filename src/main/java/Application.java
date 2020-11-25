@@ -2,7 +2,7 @@ import builder.Dobokocka;
 import builder.KockaBuilder;
 
 public class Application {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Dobokocka kocka = new KockaBuilder()
                 .elsoOldal(2)
                 .masodikOldal(4)
@@ -11,5 +11,6 @@ public class Application {
                 .otodikOldal(32)
                 .hatodikOldal(64)
                 .build();
+        System.out.println(kocka);
     }
 }
