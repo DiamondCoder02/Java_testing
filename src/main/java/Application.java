@@ -12,6 +12,11 @@ import facade.AutoMosoFacade;
 import observer.Figyelo;
 import observer.Subject;
 import proxy.AutoMosoProxy;
+import strategy.Concatenator;
+import strategy.Joiner;
+import strategy.Osszefuzo;
+
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,5 +59,10 @@ public class Application {
         Subject subject = new Subject();
         subject.addObserver(figyelo);
         subject.setAllapot("Új állapot");
+        //Strategy
+        Osszefuzo osszefuzo = new Osszefuzo();
+        List<String> darabok = Arrays.asList("ElsőSzó", "MásodikSzó");
+        System.out.println(osszefuzo.osszefuz(darabok, new Concatenator()));
+        System.out.println(osszefuzo.osszefuz(darabok, new Joiner()));
     }
 }
