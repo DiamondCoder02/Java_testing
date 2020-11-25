@@ -9,6 +9,8 @@ import chain_of_responsibilities.Lepes;
 import chain_of_responsibilities.MasodikLepes;
 import decorator.AutoMosoSzarito;
 import facade.AutoMosoFacade;
+import observer.Figyelo;
+import observer.Subject;
 import proxy.AutoMosoProxy;
 import java.util.Arrays;
 import java.util.List;
@@ -47,5 +49,10 @@ public class Application {
         for (Lepes lepes : lepesek) {
             lepes.lep();
         }
+        //Observer
+        Figyelo figyelo = new Figyelo();
+        Subject subject = new Subject();
+        subject.addObserver(figyelo);
+        subject.setAllapot("Új állapot");
     }
 }
