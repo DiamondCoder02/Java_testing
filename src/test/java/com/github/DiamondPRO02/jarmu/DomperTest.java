@@ -54,6 +54,14 @@ public class DomperTest {
         underTest.platoKinyit();
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void platoBecsuk_shouldThrowException_whenSebességIsNotZero(){
+        //Given
+        underTest.setSebesseg(1);
+        //When
+        underTest.platoBecsuk();
+    }
+
     @Test
     public void elindul_shouldThrowException_whenSebessegIsNotZero() throws NemJarAMotorException{
         underTest.setSebesseg(1);
@@ -69,6 +77,13 @@ public class DomperTest {
 
     @Test
     public void elindul_shouldThrownException_whenNemJarAMotor(){
+        Throwable ex = catchThrowable(() -> underTest.elindul(32));
+        assertThat(ex).isInstanceOf(NemJarAMotorException.class);
+        assertThat(underTest.getSebesseg()).isEqualTo(0);
+    }
+
+    @Test
+    public void megall_shouldThrownException(){
         Throwable ex = catchThrowable(() -> underTest.elindul(32));
         assertThat(ex).isInstanceOf(NemJarAMotorException.class);
         assertThat(underTest.getSebesseg()).isEqualTo(0);
