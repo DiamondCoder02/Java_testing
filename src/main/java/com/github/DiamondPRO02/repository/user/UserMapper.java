@@ -11,7 +11,7 @@ public class UserMapper implements Mapper<User> {
     @Override
     public User map(ResultSet resultSet) throws SQLException {
         if(resultSet.next()){
-            User.builder()
+            return User.builder()
                     .username(resultSet.getString("username"))
                     .password(resultSet.getString("password"))
                     .balance(resultSet.getInt("balance"))
