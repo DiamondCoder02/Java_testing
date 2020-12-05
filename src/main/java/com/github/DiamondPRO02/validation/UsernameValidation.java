@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Predicate;
 
-import static org.codehaus.plexus.util.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
 @RequiredArgsConstructor
@@ -17,14 +17,16 @@ public class UsernameValidation implements Predicate<String> {
     public boolean test(String username) {
         boolean result = true;
 
-        if(isBlank(username)){
-            System.out.println("Username must contain at least 4 charachter");
+        if (isBlank(username)) {
+            System.out.println("Username must contain at least one character");
             result = false;
         }
-        if(userRepository.usernameExists(username)){
-            System.out.println("Username already in use!");
+
+        if (userRepository.usernameExists(username)) {
+            System.out.println("Username already in use.");
             result = false;
         }
+
         return result;
     }
 }

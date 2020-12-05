@@ -10,8 +10,8 @@ import static com.github.DiamondPRO02.util.Constants.*;
 @Component
 public class MainMenu implements Menu {
     private final ConsoleReader consoleReader;
-
     private final RegistrationMenu registrationMenu;
+    private final LoginMenu loginMenu;
 
     @Override
     public void enterMenu() {
@@ -19,12 +19,12 @@ public class MainMenu implements Menu {
 
         do {
             System.out.println();
-            System.out.println("Main menu");
+            System.out.println("Main Menu");
             System.out.println("Commands:");
-            System.out.println("add - Create a new user");
-            System.out.println("login - Login to an existing user");
+            System.out.println("add - Create new user");
+            System.out.println("login - Login to user");
             System.out.println("exit - Exit application");
-            System.out.println("Please choose one command from aboveadd");
+            System.out.println("Choose one command from above:");
 
             input = consoleReader.readInput();
 
@@ -33,6 +33,7 @@ public class MainMenu implements Menu {
                     registrationMenu.enterMenu();
                     break;
                 case MAIN_MENU_LOGIN_OPTION:
+                    loginMenu.enterMenu();
                     break;
                 case EXIT_OPTION:
                     break;

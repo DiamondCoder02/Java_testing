@@ -8,10 +8,11 @@ import java.util.function.Predicate;
 public class PasswordValidation implements Predicate<String> {
     @Override
     public boolean test(String password) {
-        if(password.length() < 3){
-            System.out.println("Password too short (Minimum 3 charachters)");
+        if (password.length() < 3) {
+            System.out.println("Password too short (minimum 3 characters)");
             return false;
         }
+
         return true;
     }
 }

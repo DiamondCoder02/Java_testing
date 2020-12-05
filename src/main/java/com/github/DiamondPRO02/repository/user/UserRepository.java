@@ -9,11 +9,15 @@ import java.util.Map;
 public class UserRepository {
     private static final Map<String, User> USERS = new HashMap<>();
 
-    public void save(User user){
+    public void save(User user) {
         USERS.put(user.getUsername(), user);
     }
 
     public boolean usernameExists(String username) {
         return USERS.containsKey(username);
+    }
+
+    public User findByUsername(String username) {
+        return USERS.get(username);
     }
 }
