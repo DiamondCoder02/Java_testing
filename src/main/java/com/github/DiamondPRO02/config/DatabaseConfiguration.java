@@ -13,11 +13,19 @@ public class DatabaseConfiguration {
     @Value("${database.url}")
     private String url;
 
+    @Value("${database.username}")
+    private String username;
+
+    @Value("${database.password}")
+    private String password;
+
     @Bean
     public DatabaseConnecftion databaseConnecftion(){
         return DatabaseConnecftion.builder()
                 .driver(driver)
                 .databaseUrl(url)
+                .dataBaseUsername(username)
+                .dataBasePassword(password)
                 .build();
     }
 }
