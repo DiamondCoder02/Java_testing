@@ -1,31 +1,13 @@
 package com.github.DiamondPRO02.config;
 
-import com.github.DiamondPRO02.repository.DatabaseConnecftion;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
+import com.github.DiamondPRO02.Application;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
+@EnableJpaRepositories(basePackages = "com.github.DiamondPRO02")
+@EntityScan(basePackageClasses = Application.class)
 public class DatabaseConfiguration {
-    @Value("${database.driver}")
-    private String driver;
 
-    @Value("${database.url}")
-    private String url;
-
-    @Value("${database.username}")
-    private String username;
-
-    @Value("${database.password}")
-    private String password;
-
-    @Bean
-    public DatabaseConnecftion databaseConnecftion(){
-        return DatabaseConnecftion.builder()
-                .driver(driver)
-                .databaseUrl(url)
-                .dataBaseUsername(username)
-                .dataBasePassword(password)
-                .build();
-    }
 }
