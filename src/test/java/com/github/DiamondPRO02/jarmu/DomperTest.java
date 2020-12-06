@@ -31,9 +31,7 @@ public class DomperTest {
         //when
         underTest.motorBeindit();
         //then
-        if(!underTest.isJarAMotor()){
-            throw new AssertionError("A JarAMotor nem lehet false");
-        }
+        assertThat(underTest.isJarAMotor()).isTrue();
     }
 
     @Test
@@ -54,12 +52,14 @@ public class DomperTest {
         underTest.platoKinyit();
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void platoBecsuk_shouldThrowException_whenSebességIsNotZero(){
         //Given
-        underTest.setSebesseg(1);
+        underTest.setPlatoNyitva(true);
         //When
         underTest.platoBecsuk();
+        //Then
+        assertThat(underTest.isPlatoNyitva()).isFalse();
     }
 
     @Test
@@ -87,6 +87,105 @@ public class DomperTest {
         Throwable ex = catchThrowable(() -> underTest.elindul(32));
         assertThat(ex).isInstanceOf(NemJarAMotorException.class);
         assertThat(underTest.getSebesseg()).isEqualTo(0);
+    }
+
+    @Test
+    public void elindul_platoIsNyitva(){
+        underTest.setPlatoNyitva(true);
+        underTest.setJarAMotor(true);
+
+        Throwable ex = catchThrowable(() -> underTest.elindul(10));
+
+        assertThat(ex).isInstanceOf(IllegalStateException.class);
+        assertThat(underTest.getSebesseg()).isEqualTo(0);
+    }
+
+    @Test
+    public void elindul_tooFast(){
+        underTest.setJarAMotor(true);
+
+        Throwable ex = catchThrowable(() -> underTest.elindul(SEBESSEG + 1));
+
+        assertThat(ex).isInstanceOf(IllegalStateException.class);
+        assertThat(underTest.getSebesseg()).isEqualTo(0);
+    }
+
+    @Test
+    public void elindul() throws NemJarAMotorException{
+        underTest.setJarAMotor(true);
+
+        underTest.elindul(SEBESSEG);
+
+        assertThat(underTest.getSebesseg()).isEqualTo(SEBESSEG);
+    }
+
+    @Test
+    public void  gyorsit_nemJarAMotor(){
+
+    }
+
+    @Test
+    public void  gyorsit_platoNyitva(){
+        underTest.setJarAMotor(true);
+        underTest.setPlatoNyitva(true);
+
+        Throwable ex = catchThrowable(() -> underTest.gyorsit(10));
+
+        assertThat(ex).isInstanceOf(IllegalStateException.class);
+        assertThat(underTest.getSebesseg()).isEqualTo(0);
+    }
+
+    @Test
+    public void  gyorsit_tooFast(){
+        underTest.setJarAMotor(true);
+
+        Throwable ex = catchThrowable(() -> underTest.gyorsit(SEBESSEG + 1));
+
+        assertThat(ex).isInstanceOf(IllegalStateException.class);
+        assertThat(underTest.getSebesseg()).isEqualTo(0);
+    }
+
+    @Test
+    public void  gyorsit() throws NemJarAMotorException{
+        underTest.setJarAMotor(true);
+        underTest.setSebesseg(30);
+
+        underTest.gyorsit(10);
+
+        assertThat(underTest.getSebesseg()).isEqualTo(40);
+    }
+
+    @Test
+    public void  megall(){
+        underTest.setSebesseg(SEBESSEG);
+
+        underTest.megall();
+
+        assertThat(underTest.getSebesseg()).isEqualTo(0);
+    }
+
+    @Test
+    public void felrakod_tulNagyARakomany(){
+        Throwable ex = catchThrowable(()-> underTest.felrakod(KAPACITAS + 1));
+
+        assertThat(ex).isInstanceOf(IllegalStateException.class);
+        assertThat(underTest.getRakomany()).isEqualTo(0);
+    }
+    @Test
+    public void felrakod(){
+        underTest.setRakomany(10);
+
+        underTest.felrakod(20);
+
+        assertThat(underTest.getRakomany()).isEqualTo(30);
+    }
+    @Test
+    public void lerakod_platoCsukva(){
+        underTest.setRakomany(10);
+
+        Throwable ex = catchThrowable(()-> underTest.lerakod());
+
+        assertThat(underTest.getRakomany()).isEqualTo(10);
     }
 }
 //Given
