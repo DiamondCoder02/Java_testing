@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/bank
+    username: postgres
+    password: admin
+
+registration:
+  startBalance: 100
+  defaultUsers:
+    - username: user1
+      password: asdasd
+      balance: 5000
+    - username: user2
+      password: asdasd
+      balance: 1000

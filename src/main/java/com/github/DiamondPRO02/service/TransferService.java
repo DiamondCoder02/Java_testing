@@ -1,0 +1,58 @@
+package com.github.DiamondPRO02.service;
+
+import com.github.DiamondPRO02.read.IntegerValidationReader;
+import com.github.DiamondPRO02.read.ValidationReader;
+import com.github.DiamondPRO02.repository.user.User;
+import com.github.DiamondPRO02.repository.user.UserRepository;
+import com.github.DiamondPRO02.validation.PositiveNumberValidation;
+import com.github.DiamondPRO02.validation.UserExistsValidator;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class TransferService {
+    private final IntegerValidationReader integerValidationReader;
+    private final PositiveNumberValidation positiveNumberValidation;
+    private final ValidationReader validationReader;
+    private final UserExistsValidator userExistsValidator;
+    private final UserRepository userRepository;
+
+    public void transfer(User user) {
+        System.out.println("How much money do you want to transfer? Available balance: " + user.getBalance());
+        int transferValue = integerValidationReader.readNumber(positiveNumberValidation);
+
+        if(transferValue == 0){
+            System.out.println("Transaction cancelled.");
+            return;
+        }
+
+        if (transferValue > user.getBalance()) {
+            System.err.println("You cannot transfer so much.");
+            transfer(user);
+            return;
+        }
+
+        System.out.println("Who do you want to send money to?");
+        String username = validationReader.readInput(userExistsValidator);
+        if(isBlank(username)){
+            System.out.println("Transaction cancelled.");
+            return;
+        }
+
+        System.out.printf("Transferring %s money to %s%n", transferValue, username);
+        User target = userRepository.findByUsername(username);
+
+        target.increaseBalance(transferValue);
+        user.decreaseBalance(transferValue);
+
+        userRepository.save(user);
+        userRepository.save(target);
+
+        System.out.println("Transaction successful.");
+    }
+}
