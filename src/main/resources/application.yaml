@@ -5,6 +5,11 @@ spring:
     username: postgres
     password: admin
 
+liquibase:
+  changelog:
+    location: classpath:/database/changelog-master.xml
+  schema: bank
+
 registration:
   startBalance: 100
   defaultUsers:
